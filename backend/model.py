@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
-class Phrase(BaseModel):
+class Results(BaseModel):
     title: str
-    word: str
+    description: str

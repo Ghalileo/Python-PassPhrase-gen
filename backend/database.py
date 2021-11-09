@@ -21,8 +21,8 @@ async def create_phrase(phrase):
     result = await collection.insert_one(document)
     return document
 
-async def update_phrase(title, word):
-    await collection.update_one({"title": title}, {"$set": {"word": word}})
+async def update_phrase(title, desc):
+    await collection.update_one({"title": title}, {"$set": {"description": desc}})
     document = await collection.find_one({"title": title})
     return document
 
