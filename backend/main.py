@@ -16,8 +16,9 @@ passphrase_object = pp.main()
 
 # App object
 app = FastAPI()
-
-origins = ['https://localhost:3000']
+react_address = 'https://localhost:3000'
+fastapi_address = 'https://localhost:8000'
+origins = [react_address]
 
 # Parameters for middleware(software bridging operating system, database, or applications on a network)
 app.add_middleware(
