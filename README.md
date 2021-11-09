@@ -1,12 +1,12 @@
 
  
-  # passphrase gen
+  # Python Passphrase Generator
  
   [![Generic Badge](https://img.shields.io/badge/User-%20O%20s%20e%20-blueviolet.svg)](https://github.com/Ghalileo)
   
   # Description 
 
-  gens the pass
+  An application which generates an acronym for a given phrase
 
   Table of Contents |
   ----------------- |
@@ -18,16 +18,16 @@
   
 
   # Installation 
-  version of sumn
+  N/A
 
   # Usage 
-  enter the pass
+  [URL]
 
   # User Story
-  i like pwds, u? 
+  As a user living in the digital age, I NEED a secure password which is unique I will remember
 
   # Contribution 
-  ose oli
+  Oseghale, Ghalileo, Oli
 
   # License 
   [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
