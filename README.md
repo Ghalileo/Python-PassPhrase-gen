@@ -24,7 +24,8 @@
   [URL]
 
   # User Story
-  As a user living in the digital age, I NEED a secure password which is unique I will remember
+  As a user living in the digital age, I NEED a secure password which is unique and memorable.
+
 
   # Contribution 
   Oseghale, Ghalileo, Oli
