@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -6,7 +5,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Passphrase </h1> 
-      <button>Click me!</button>
+      <button className="btn btn-outline-danger">Click me!</button>
       <input/>
     </div>
   );
