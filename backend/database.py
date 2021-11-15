@@ -13,7 +13,7 @@ async def fetch_all_phrases():
     thephrases = []
     cursor = collection.find({})
     async for document in cursor:
-        phrases.append(Results(**document))
+        thephrases.append(Results(**document))
     return thephrases
 
 async def create_phrase(phrase):

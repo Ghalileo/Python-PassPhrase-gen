@@ -45,14 +45,25 @@ async def get_phrase_by_title(title):
         return response
     raise HTTPException(404, f"There is no phrase with the title {title}")
 
-@app.post("api/phrase")
-async def post_phrase(phrase):
-    return 1
+@app.post("api/phrase", response_model=Results)
+async def post_phrase(phrase:Results):
+    response = await create_phrase(phrase.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong my friend")
+    
 
-@app.put("api/phrase")
-async def put_phrase(id, data):
-    return 1
+@app.put("api/phrase/{title}", response_model=Results)
+async def put_phrase(title: str, phra: str):
+    response = await update_phrase(title, phra)
+    if response:
+        return response
+    raise HTTPException(404, f"There is not phrase with the title {title}")
+    
 
-@app.delete("api/phrase")
-async def delete_phrase(id, data):
-    return 1
+@app.delete("api/phrase/{title}")
+async def delete_phrase(title):
+    response = await remove_phrase(title)
+    if response:
+        return "Item deleted succesfully!"
+    raise HTTPException(404, "Thre is no phrase with the title {phrase}")
