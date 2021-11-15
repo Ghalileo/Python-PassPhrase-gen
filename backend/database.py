@@ -1,7 +1,10 @@
 import motor.motor_asyncio
 from backend.model import Results
+from backend import passPhrase
 from typing import List,Optional,TypedDict
 import asyncio
+
+pp = passPhrase.main()
 
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017')
 database = client.PhraseList
@@ -19,13 +22,6 @@ async def fetch_all_phrases():
         thephrases.append(doc)
     return thephrases
 
-tp1={'title':'testing one'}
-tp2 = {'phrase':'testing two'}
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(create_phrase(tp1))
-loop.run_until_complete(create_phrase(tp2))
-loop.run_until_complete(fetch_all_phrases())
 
 async def update_phrase(title, pphrases):
     await collection.update_one({"title": title}, {"$set": {"phrase": pphrases}})
@@ -36,9 +32,11 @@ async def remove_phrase(title):
     await collection.delete_one({"title": title})
     return True
 
-#async def fetch_all_phrases():
- #   thephrases = []
-  #  cursor = collection.find({}).to_list(100)
-   # for document in await cursor:
-    #    thephrases.append(Results(document))
-    #return thephrases
+
+result = Results()
+result.title='My PassPhrase'
+result.phrases=pp.passphrase_input
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(create_phrase(result.__dict__))
+loop.run_until_complete(fetch_all_phrases())
