@@ -10,11 +10,11 @@ async def fetch_one_phrase(title):
     return document
 
 async def fetch_all_phrases():
-    phrases = []
+    thephrases = []
     cursor = collection.find({})
     async for document in cursor:
         phrases.append(Results(**document))
-    return phrases
+    return thephrases
 
 async def create_phrase(phrase):
     document = phrase 

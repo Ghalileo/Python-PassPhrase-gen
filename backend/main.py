@@ -38,6 +38,13 @@ async def get_phrase(id):
     response = await fetch_all_phrases()
     return response
 
+@app.get("/api/phrases/{title}", response_model=Results)
+async def get_phrase_by_title(title):
+    response = await fetch_one_phrase(title)
+    if response:
+        return response
+    raise HTTPException(404, f"There is no phrase with the title {title}")
+
 @app.post("api/phrase")
 async def post_phrase(phrase):
     return 1
