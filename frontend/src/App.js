@@ -3,12 +3,13 @@ import axios from 'axios';
 import React, { useState, useEffect} from 'react';
 
 const App = () => {
+  // State object for the title of passphases
   const [title, setTitle] = useState('');
-  
+  // State object for phrase
   const [phrases, setPhrases] = useState('');
 
 
-
+// Main body of application
   return (
     <div className="App">
       <h1>Passphrase </h1> 
