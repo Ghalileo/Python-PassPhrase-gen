@@ -1,10 +1,11 @@
 import motor.motor_asyncio
-from backend.model import Results
-from backend import passPhrase
+from model import Results
+import passPhrase
 from typing import List,Optional,TypedDict
 import asyncio
 
-pp = passPhrase.main()
+#pp = passPhrase.main()
+#client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017')
 
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster')
 database = client.PhraseList
@@ -32,15 +33,16 @@ async def remove_phrase(title):
     await collection.delete_one({"title": title})
     return True
 
-
-result = Results()
-result.title='My PassPhrase'
-result.phrases=pp.passphrase_input
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(create_phrase(result.__dict__))
-loop.run_until_complete(fetch_all_phrases())
-loop.run_until_complete(update_phrase('My PassPhrase', 'new passphrase - Update Complete'))
-loop.run_until_complete(fetch_all_phrases())
-loop.run_until_complete(remove_phrase('My PassPhrase'))
-loop.run_until_complete(fetch_all_phrases())
+#
+#r = {'title':'my_pass',"phrases":'testing this phrase'}
+#r2 = [r,{'title':'my_pass_2',"phrases":'testing this phrase too'}]
+#results:List[Results] =  [Results(**r) for r in r2]
+#results
+#
+#loop = asyncio.get_event_loop()
+#loop.run_until_complete(create_phrase(results[1].__dict__))
+#loop.run_until_complete(fetch_all_phrases())
+#loop.run_until_complete(update_phrase('My PassPhrase', 'new passphrase - Update Complete'))
+#loop.run_until_complete(fetch_all_phrases())
+#loop.run_until_complete(remove_phrase('my_pass'))
+#loop.run_until_complete(fetch_all_phrases())
