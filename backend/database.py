@@ -1,12 +1,12 @@
 import motor.motor_asyncio
-from backend.model import Results
-from backend import passPhrase
+from model import Results
+import passPhrase
 from typing import List,Optional,TypedDict
 import asyncio
 
-pp = passPhrase.main()
 
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster')
+
+client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://127.0.0.1:27017')
 database = client.PhraseList
 collection = database.phrase
 
@@ -33,10 +33,10 @@ async def remove_phrase(title):
     return True
 
 
-result = Results()
-result.title='My PassPhrase'
-result.phrases=pp.passphrase_input
+# result = Results()
+# result.title='My PassPhrase'
+# result.phrases=pp.passphrase_input
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(create_phrase(result.__dict__))
-loop.run_until_complete(fetch_all_phrases())
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(create_phrase(result.__dict__))
+# loop.run_until_complete(fetch_all_phrases())
