@@ -24,7 +24,7 @@ async def fetch_all_phrases():
 
 
 async def update_phrase(title, pphrases):
-    await collection.update_one({"title": title}, {"$set": {"phrase": pphrases}})
+    await collection.update_one({"title": title}, {"$set": {"phrases": pphrases}})
     document = await collection.find_one({"title": title})
     return document
 
@@ -39,4 +39,8 @@ result.phrases=pp.passphrase_input
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(create_phrase(result.__dict__))
+loop.run_until_complete(fetch_all_phrases())
+loop.run_until_complete(update_phrase('My PassPhrase', 'new passphrase - Update Complete'))
+loop.run_until_complete(fetch_all_phrases())
+loop.run_until_complete(remove_phrase('My PassPhrase'))
 loop.run_until_complete(fetch_all_phrases())
