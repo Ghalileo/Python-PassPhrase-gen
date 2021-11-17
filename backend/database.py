@@ -6,7 +6,7 @@ import asyncio
 
 pp = passPhrase.main()
 
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017')
+client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster')
 database = client.PhraseList
 collection = database.phrase
 
