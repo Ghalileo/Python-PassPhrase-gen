@@ -2,6 +2,7 @@ import pydantic
 import passPhrase as pp
 import time
 from database import (
+   # fetch_one_phrase,
     fetch_all_phrases,
     create_phrase,
     update_phrase,
@@ -33,16 +34,16 @@ def read_root():
     return{'passphrase_object':f'{passphrase_object.__dict__}'}
 
 @app.get("/api/phrase")
-async def get_phrase(id):
+async def get_phrase():
     response = await fetch_all_phrases()
     return response
 
-@app.get("/api/phrases/{title}", response_model=Results)
-async def get_phrase_by_title(title):
-    response = await fetch_one_phrase(title)
-    if response:
-        return response
-    raise HTTPException(404, f"There is no phrase with the title {title}")
+#@app.get("//api/phrases/{title}", response_model=Results)
+#async def get_phrase_by_title(title):
+#    response = await fetch_one_phrase(title)
+#    if response:
+#        return response
+#    raise HTTPException(404, f"There is no phrase with the title {title}")
 
 @app.post("/api/phrase", response_model=Results)
 async def post_phrase(phrase:Results):
