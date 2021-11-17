@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 
 // Defined variable for phrase item component which will handle the location of generated phrases
-const phraseItem = (props) => {
+const PhraseItem = (props) => {
 
   // Function to delete generated phrases
 const deletePhraseHandler = (title) => {
@@ -23,4 +23,4 @@ return(
 
 }
 
-export default phraseItem;
+export default PhraseItem;

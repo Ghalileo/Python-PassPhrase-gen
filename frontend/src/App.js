@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
-import phraseView from './components/phraseView'
+import PhraseView from './components/phraseView'
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 
@@ -42,7 +42,7 @@ const addToHandler = () => {
         <br/>
         <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
       <div>
-        <phraseView phraseList={phraseList}/>
+        <PhraseView phraseList={phraseList}/>
       </div>
       </div>
       <h6>Copyright 2021, All rights reserved &copy;</h6>
