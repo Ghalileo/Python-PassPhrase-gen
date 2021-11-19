@@ -14,7 +14,7 @@ const App = () => {
 
   // Read all phrases
  useEffect(() => {
-   axios.get('http://localhost:8000/api/phrase')
+   axios.get('http://127.0.0.1:8000/api/phrase')
    .then(res => {
      setPhraseList(res.data)
    })
@@ -22,7 +22,7 @@ const App = () => {
 
 // Post a phrase
 const addToHandler = () => {
-  axios.post('http://localhost:8000/api/phrase/', {'title': title, 'phrase': phrases})
+  axios.post('http://127.0.0.1:8000/api/phrase/', {'title': title, 'phrase': phrases})
   .then(res => console.log(res))
 }
 
