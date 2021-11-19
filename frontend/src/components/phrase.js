@@ -6,7 +6,7 @@ const PhraseItem = (props) => {
 
   // Function to delete generated phrases
 const deletePhraseHandler = (title) => {
-axios.delete(`http://localhost:8000/api/phrase/${title}`)
+axios.delete(`http://127.0.0.1:8000/api/phrase/${title}`)
   .then(res => console.log(res.data)) }
 
 // Generated HTML Of PhraseItem

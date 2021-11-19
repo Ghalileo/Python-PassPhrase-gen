@@ -72,9 +72,9 @@ class Config(PassPhrase):
 
 def main():
     pass_phrase_object = PassPhrase()
-    pass_phrase_object.passphrase_input=PassPhrase.get_Passphrase_from_User()
-    pass_phrase_object.passphrase_input=PassPhrase.check_passphrase_valid(pass_phrase_object.passphrase_input)
-    print(pass_phrase_object.__dict__)
+ #   pass_phrase_object.passphrase_input=PassPhrase.get_Passphrase_from_User()
+ #   pass_phrase_object.passphrase_input=PassPhrase.check_passphrase_valid(pass_phrase_object.passphrase_input)
+   # print(pass_phrase_object.__dict__)
     return pass_phrase_object
 if __name__ == '__main__':
     main()

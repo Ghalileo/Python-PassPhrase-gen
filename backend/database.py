@@ -1,6 +1,6 @@
 import motor.motor_asyncio
 from model import Results
-import passPhrase
+#import passPhrase
 from typing import List,Optional,TypedDict
 import asyncio
 
@@ -13,9 +13,13 @@ collection = database.phrase
 
 
 async def create_phrase(phrase):
-    document = phrase 
-    result = await collection.insert_one(document)
-    return document
+    document = Results(**phrase)
+    ph = document.phrases
+
+    document.passphrase_input = document.generate_phrases(document.phrases)
+    document.phrases = ph
+    result = await collection.insert_one(document.__dict__)
+    return document.__dict__
 
 async def fetch_all_phrases():
     thephrases=[]

@@ -1,5 +1,5 @@
 import pydantic
-import passPhrase as pp
+#import passPhrase as pp
 import time
 from database import (
    # fetch_one_phrase,
@@ -12,13 +12,13 @@ from fastapi import FastAPI, HTTPException
 from model import Results
 from fastapi.middleware.cors import CORSMiddleware
 global passphrase_object
-passphrase_object = pp.main()
+
 
 # App object
 app = FastAPI()
-react_address = 'https://localhost:3000'
-fastapi_address = 'https://localhost:8000'
-origins = [react_address]
+react_address = "http://127.0.0.1:3000"
+fastapi_address = "http://127.0.0.1:8000"
+origins = "*"
 
 # Parameters for middleware(software bridging operating system, database, or applications on a network)
 app.add_middleware(
@@ -31,7 +31,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return{'passphrase_object':f'{passphrase_object.__dict__}'}
+    return{'passphrase_object':''}
 
 @app.get("/api/phrase")
 async def get_phrase():
