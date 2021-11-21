@@ -16,7 +16,7 @@ async def create_phrase(phrase):
     document = Results(**phrase)
     ph = document.phrases
 
-    document.passphrase_input = document.generate_phrases(document.phrases)
+    document.passphrase_output = document.generate_phrases(document.phrases)
     result = await collection.insert_one(document.__dict__)
     return document.__dict__
 

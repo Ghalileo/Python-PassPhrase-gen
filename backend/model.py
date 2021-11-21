@@ -25,10 +25,10 @@ class Results(BaseModel):
     _id: Optional[str]
     title: Optional[str]
     phrases: Optional[str]
-    passphrase_input : Optional[str]
+    passphrase_output : Optional[str]
 
 
-    @pydantic.validator('phrases',allow_reuse=True)
+    @pydantic.validator('phrases',allow_reuse=False)
     def check_passphrase_valid(cls,phrases:str):
         print('started validator\n')
         try:
