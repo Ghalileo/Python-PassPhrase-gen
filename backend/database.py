@@ -17,7 +17,6 @@ async def create_phrase(phrase):
     ph = document.phrases
 
     document.passphrase_input = document.generate_phrases(document.phrases)
-    document.phrases = ph
     result = await collection.insert_one(document.__dict__)
     return document.__dict__
 
@@ -49,5 +48,5 @@ async def remove_phrase(title):
 #loop.run_until_complete(fetch_all_phrases())
 #loop.run_until_complete(update_phrase('My PassPhrase', 'new passphrase - Update Complete'))
 #loop.run_until_complete(fetch_all_phrases())
-#loop.run_until_complete(remove_phrase('my_pass'))
+#loop.run_until_complete(remove_phrase('meow mix meow'))
 #loop.run_until_complete(fetch_all_phrases())
