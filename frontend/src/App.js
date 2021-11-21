@@ -13,12 +13,15 @@ const App = () => {
   const [phrases, setPhrases] = useState('');
 
   // Read all phrases
+ 
+
  useEffect(() => {
-   axios.get('http://127.0.0.1:8000/api/phrase')
-   .then(res => {
-     setPhraseList(res.data)
-   })
- });
+  axios.get('http://localhost:8000/api/phrase')
+    .then(res => {
+      setPhraseList(res.data)
+    })
+});
+
 
 // Post a phrase
 const addToHandler = () => {
