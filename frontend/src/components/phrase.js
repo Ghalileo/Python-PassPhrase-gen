@@ -13,7 +13,7 @@ axios.delete(`http://127.0.0.1:8000/api/phrase/${title}`)
 return(
 <div>
 <p>
-<span style={{ fontWeight: 'bold, underline'}}>{props.phrase.title} :</span>{props.phrase.phrases}
+<span style={{ fontWeight: 'bold, underline'}}>{props.phrase.title} :</span>{props.phrase.passphrase_output}
 <button onClick={() => deletePhraseHandler(props.phrase.title)} className="btn btn-outline-danger">X</button>
 </p>
 
