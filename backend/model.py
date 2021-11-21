@@ -42,6 +42,7 @@ class Results(BaseModel):
         except AttributeError as e:
             phrases = 'you have errd out'
             return phrases
+        return phrases
     @staticmethod
     def generate_phrases(pass_input):
         new_list = []
@@ -69,6 +70,7 @@ class Results(BaseModel):
         print(f'aye we did the test\t\tCHANGED-> {pass_input}\tTO-> {new_passphrase}')
         print('Copied to clipboard')
 #        pyperclip.copy(new_passphrase)
+         
         return new_passphrase
     @staticmethod
     def get_Passphrase_from_User():
@@ -78,4 +80,4 @@ class Results(BaseModel):
 
 class Config(Results):
     allow_mutation=True
-    
+    allow_extra='ignore'
