@@ -23,7 +23,7 @@ const App = () => {
 });
 
 
-// Post a phrase.  Work in progress for final response
+// Post a phrase
 const addToHandler = () => {
   axios.post('http://127.0.0.1:8000/api/phrase/', {'title': title, 'phrases': phrases})
   .then(res => console.log(res))
