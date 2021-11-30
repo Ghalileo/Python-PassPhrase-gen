@@ -8,10 +8,13 @@ from database import (
     update_phrase,
     remove_phrase,
 )
+from dotenv import dotenv_values
 from fastapi import FastAPI, HTTPException
 from model import Results
 from fastapi.middleware.cors import CORSMiddleware
-global passphrase_object
+import os
+import motor.motor_asyncio
+# Defining Logic Environment Variables 
 
 
 # App object
