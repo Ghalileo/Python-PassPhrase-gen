@@ -1,6 +1,5 @@
 import motor.motor_asyncio
 from model import Results, UserLoginSchema, UserSchema
-
 from typing import List,Optional,TypedDict
 import asyncio
 

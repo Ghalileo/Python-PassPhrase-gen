@@ -22,8 +22,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import motor.motor_asyncio
 # Defining Logic Environment Variables 
-global users
-users = []
 
 # App object
 app = FastAPI()
@@ -64,7 +62,7 @@ async def post_phrase(phrase:Results):
     raise HTTPException(400, "Something went wrong my friend")
     
 
-@app.put("/api/phrase/{title}",dependencies=[Depends(jwtBearer())], response_model=Results,tags=['Phrase','Update Specific Phrase Title'])
+@app.put("/api/phrase/{title}",dependencies=[Depends(jwtBearer())], response_model=Results,tags=['Phrase','Update Phrase by Title'])
 async def put_phrase(title: str, phra: str):
     response = await update_phrase(title, phra)
     if response:
@@ -82,16 +80,12 @@ async def delete_phrase(title):
 @app.post("/user_signup",tags=["Authorization"])
 async def signup_user(user:UserSchema = Body(default=None)):
     response = await create_user(user.fullname,user.email,user.password)
-
     return signJWT(user.email)
-
 
 
 @app.post("/user_login", tags= ["Authorization"])
 async def login_user(user: UserLoginSchema = Body(default=None)):
-    print(users)
     if check_user(user, await get_users()):
-        print("Great Job Logging in")
         response = await create_login_user(user)
         return signJWT(user.email)
     else:
@@ -101,11 +95,8 @@ async def login_user(user: UserLoginSchema = Body(default=None)):
 def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
     users = user_list
     for user in users:
-        print (user , user.email, user.password)
         if user.email == data.email and user.password == data.password:
-            print('Password Match')
             return True
-    print('Authorization Fail', data)
     return False
 
 @app.get("/api/user_signup",tags=['Authorization','Get All Users'])
