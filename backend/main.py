@@ -12,7 +12,8 @@ from database import (
     login_user
 )
 from auth.jwt_handler import signJWT
-from fastapi import FastAPI, HTTPException, Body
+from auth.jwt_bearer import jwtBearer
+from fastapi import FastAPI, HTTPException, Body, Depends
 from model import Results, UserSchema, UserLoginSchema
 from fastapi.middleware.cors import CORSMiddleware
 import os
@@ -59,7 +60,7 @@ async def post_phrase(phrase:Results):
     raise HTTPException(400, "Something went wrong my friend")
     
 
-@app.put("/api/phrase/{title}", response_model=Results,tags=['Phrase','Update Specific Phrase Title'])
+@app.put("/api/phrase/{title}",dependencies=[Depends(jwtBearer())], response_model=Results,tags=['Phrase','Update Specific Phrase Title'])
 async def put_phrase(title: str, phra: str):
     response = await update_phrase(title, phra)
     if response:
