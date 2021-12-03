@@ -1,15 +1,18 @@
+import asyncio
 import pydantic
 #import passPhrase as pp
 import time
 #from auth.jwt_handler import signJWT,users
+from typing import List
 from database import (
    # fetch_one_phrase,
     fetch_all_phrases,
     create_phrase,
     update_phrase,
     remove_phrase,
+    fetch_all_users,
     create_user,
-    login_user
+    create_login_user
 )
 from auth.jwt_handler import signJWT
 from auth.jwt_bearer import jwtBearer
@@ -19,14 +22,15 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import motor.motor_asyncio
 # Defining Logic Environment Variables 
-
+global users
+users = []
 
 # App object
 app = FastAPI()
 react_address = "http://127.0.0.1:3000"
 fastapi_address = "http://127.0.0.1:8000"
 origins = "*"
-users= [UserLoginSchema(**{"fullname":"oli","email":"oli@google.com","password":"123123"})]
+#users= [UserLoginSchema(**{"fullname":"oli","email":"oli@google.com","password":"123123"})]
 # Parameters for middleware(software bridging operating system, database, or applications on a network)
 app.add_middleware(
     CORSMiddleware,
@@ -81,17 +85,30 @@ async def signup_user(user:UserSchema = Body(default=None)):
 
     return signJWT(user.email)
 
-def check_user(data: UserLoginSchema):
-    for user in users:
-        if user.email == data.email and user.password == data.password:
-            return True
-        return False
+
 
 @app.post("/user_login", tags= ["Authorization"])
-def login_user(user: UserLoginSchema = Body(default=None)):
-    if check_user(user):
-        return user
+async def login_user(user: UserLoginSchema = Body(default=None)):
+    print(users)
+    if check_user(user, await get_users()):
+        print("Great Job Logging in")
+        response = await create_login_user(user)
+        return signJWT(user.email)
     else:
         return {
             "ERROR":"INVALID USER/PASS"
         }
+def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
+    users = user_list
+    for user in users:
+        print (user , user.email, user.password)
+        if user.email == data.email and user.password == data.password:
+            print('Password Match')
+            return True
+    print('Authorization Fail', data)
+    return False
+
+@app.get("/api/user_signup",tags=['Authorization','Get All Users'])
+async def get_users():
+    response = await fetch_all_users()
+    return response
