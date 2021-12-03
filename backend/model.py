@@ -1,3 +1,4 @@
+from fastapi.datastructures import Default
 from pydantic import BaseModel
 from typing import Optional
 import pydantic
@@ -81,3 +82,28 @@ class Results(BaseModel):
 class Config(Results):
     allow_mutation=True
     allow_extra='ignore'
+
+
+class UserSchema(pydantic.BaseModel):
+    fullname : str = pydantic.Field(default=None)
+    email : pydantic.EmailStr = pydantic.Field(default=None)
+    password : str = pydantic.Field(default=None)
+    class Config:
+        the_schema = {
+            "user_demo you know we in the back": {
+                "name " : "Soulja Boi ",
+                "email" : "test@google.com",
+                "password" : "Tell em"
+            }
+        }
+
+class UserLoginSchema(pydantic.BaseModel):
+    email : pydantic.EmailStr = pydantic.Field(default=None)
+    password : str = pydantic.Field(default=None)
+    class Config : 
+        the_schema = {
+            "user_demo but we in the back" : {
+                "email":"yams@google.com",
+                "password" : "yam yam"
+            }
+        }
