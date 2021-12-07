@@ -12,7 +12,8 @@ from database import (
     remove_phrase,
     fetch_all_users,
     create_user,
-    create_login_user
+    create_login_user,
+    remove_user
 )
 from auth.jwt_handler import signJWT
 from auth.jwt_bearer import jwtBearer
@@ -103,3 +104,10 @@ def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
 async def get_users():
     response = await fetch_all_users()
     return response
+
+@app.delete("/api/user_signup/{fullname}",tags=['Authorization','Delete Password by Fullname'])
+async def delete_user(fullname):
+    response = await remove_user(fullname)
+    if response:
+        return "Item deleted succesfully!"
+    raise HTTPException(404, f"Thre is no user with the fullname:  {fullname}")

@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
 import PhraseView from './components/phraseView'
+import UserSignupView from './components/user_signupView'
 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
@@ -91,9 +92,15 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
         <br/>
         <br/>
         <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
+
       <div>
         <PhraseView phraseList={phraseList}/>
       </div>
+        <h5 className="card text-white bg-dark mb-3">All Passwords</h5>
+      <div>
+        <UserSignupView signupList={signupList}/>
+      </div>
+
       </div>
       <h6>Copyright 2021, All rights reserved &copy;</h6>
     </div>

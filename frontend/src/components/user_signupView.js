@@ -4,7 +4,9 @@ export default function UserSignupView(props) {
     return (
         <div>
             <ul>
-                {props.SignupList.map(signup => <UserSignup signup={signup}/> )}
+                {props.signupList.map(signup => {
+                    return <UserSignup signup={signup} />
+                } )}
             </ul>
         </div>
     )

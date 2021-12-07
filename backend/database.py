@@ -57,6 +57,11 @@ async def fetch_all_users():
         users.append(res)
     return users
 
+async def remove_user(fullname):
+    await user_signup_collection.delete_one({"fullname": fullname})
+    return True
+
+
 
 #
 #r = {'title':'my_pass',"phrases":'testing this phrase'}
