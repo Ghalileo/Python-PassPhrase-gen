@@ -29,7 +29,7 @@ class Results(BaseModel):
     passphrase_output : Optional[str]
 
 
-    @pydantic.validator('phrases',allow_reuse=False)
+ #   @pydantic.validator('phrases',allow_reuse=False)
     def check_passphrase_valid(cls,phrases:str):
         print('started validator\n')
         try:

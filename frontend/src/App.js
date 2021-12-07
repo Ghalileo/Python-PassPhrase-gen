@@ -1,35 +1,73 @@
-import UserSignup from './components/user_signupView/';
+import React, { useState, useEffect} from 'react';
+import './App.css';
+import axios from 'axios';
+import PhraseView from './components/phraseView'
 
-// USER LOGIN
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+
 
 const App = () => {
   // State object for the title of passphases
 
-  const [SignupList, setSignupList] = useState([{}]);
-  const [fullname, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [phraseList, setPhraseList] = useState([{}]);
+  const [title, setTitle] = useState('');
+  const [phrases, setPhrases] = useState('');
 
-  // Read all users
+  // Read all phrases
  
 
  useEffect(() => {
-  axios.get('http://127.0.0.1:8000/api/user_signup/')
+  axios.get('http://127.0.0.1:8000/api/phrase/')
     .then(res => {
-      setSignupList(res.data)
+      setPhraseList(res.data)
     })
+});
+
+
+// Post a phrase
+const addToHandler2 = () => {
+  axios.post('http://127.0.0.1:8000/api/phrase/', {'title': title, 'phrases': phrases})
+  .then(res => console.log(res))
+}
+
+
+const [SignupList, setSignupList] = useState([{}]);
+const [fullname, setFullName] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+// Read all users
+
+
+useEffect(() => {
+axios.get('http://127.0.0.1:8000/api/user_signup/')
+  .then(res => {
+    setSignupList(res.data)
+  })
 });
 
 
 // Post a user
 const addToHandler = () => {
-  axios.post('http://127.0.0.1:8000/api/user_signup/', {'fullname': fullname, 'email': email,'password':password})
-  .then(res => console.log(res))
+axios.post('http://127.0.0.1:8000/api/user_signup/', {'fullname': fullname, 'email': email,'password':password})
+.then(res => console.log(res))
 }
+
 
 // Main body of application
   return (
     <div className="App">
+      <h1>Passphrase</h1> 
+      <div className="card-body">
+        <h4>Add a phrase</h4>
+        <span className="card-text">
+          <input className="mb-2 form-control titleIn" onChange={event => setTitle(event.target.value)} placeholder="title"/>
+          <input className="mb-2 form-control titleIn" onChange={event => setPhrases(event.target.value)} placeholder="Phrase"/>
+          <button className="btn btn-outline-danger" onClick={addToHandler}>Fire!</button>
+        </span>
+        <br/>
+
+        <div className="App_Login">
       <h1>Sign Up</h1> 
       <div className="card-body">
         <h4>It will be fun</h4>
@@ -39,11 +77,17 @@ const addToHandler = () => {
           <input className="mb-2 form-control titleIn" onChange={event => setPassword(event.target.value)} placeholder="Password"/>
           <button className="btn btn-outline-danger" onClick={addToHandler}>Login</button>
         </span>
+      </div>
+      </div>
+
+
+        
+
         <br/>
         <br/>
-        <br/>
+        <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
       <div>
-        <UserSignup SignupList={SignupList}/>
+        <PhraseView phraseList={phraseList}/>
       </div>
       </div>
       <h6>Copyright 2021, All rights reserved &copy;</h6>

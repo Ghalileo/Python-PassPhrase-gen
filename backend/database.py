@@ -8,8 +8,8 @@ import asyncio
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster')
 database = client.PhraseList
 collection = database.phrase
-collection2 = database.user_signup
-collection3 = database.user_login
+user_signup_collection = database.user_signup
+user_login_collection = database.user_login
 
 async def create_phrase(phrase):
     document = Results(**phrase)
@@ -42,17 +42,17 @@ async def remove_phrase(title):
 async def create_user(fullname,email,password):
     document = UserSchema(**{"fullname": f"{fullname}","email":f"{email}","password":f"{password}"})
 
-    result = await collection2.insert_one(document.__dict__)
+    result = await user_signup_collection.insert_one(document.__dict__)
     return document
 async def create_login_user(schema:UserLoginSchema):
     document = UserLoginSchema(**{"email":f"{schema.email}","password":f"{schema.password}"})
 
-    result = await collection3.insert_one(document.__dict__)
+    result = await user_login_collection.insert_one(document.__dict__)
     return document
 
 async def fetch_all_users():
     users=[]
-    for doc in await collection2.find({}).to_list(100):
+    for doc in await user_signup_collection.find({}).to_list(100):
         res = UserSchema(**doc)
         users.append(res)
     return users
