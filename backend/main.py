@@ -77,13 +77,13 @@ async def delete_phrase(title):
         return "Item deleted succesfully!"
     raise HTTPException(404, "Thre is no phrase with the title {phrase}")
 
-@app.post("/user_signup",tags=["Authorization"])
+@app.post("/api/user_signup/",tags=["Authorization"])
 async def signup_user(user:UserSchema = Body(default=None)):
     response = await create_user(user.fullname,user.email,user.password)
     return signJWT(user.email)
 
 
-@app.post("/user_login", tags= ["Authorization"])
+@app.post("/api/user_login/", tags= ["Authorization"])
 async def login_user(user: UserLoginSchema = Body(default=None)):
     if check_user(user, await get_users()):
         response = await create_login_user(user)
@@ -99,7 +99,7 @@ def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
             return True
     return False
 
-@app.get("/api/user_signup",tags=['Authorization','Get All Users'])
+@app.get("/api/user_signup/",tags=['Authorization','Get All Users'])
 async def get_users():
     response = await fetch_all_users()
     return response
