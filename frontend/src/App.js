@@ -6,6 +6,7 @@ import UserSignupView from './components/user_signupView';
 import styled from "styled-components";
 import { AccountBox } from "./components/accountBox";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import Navigation from './components/Nav'
 
 const AppContainer = styled.div`
   width: 100%;
@@ -57,6 +58,7 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
 // Main body of application
   return (
     <div className="App">
+      <Navigation/>
       <h1>Passphrase</h1> 
       <div className="card-body">
         <h4>Add a phrase</h4>
