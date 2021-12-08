@@ -1,11 +1,20 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
-import PhraseView from './components/phraseView'
-import UserSignupView from './components/user_signupView'
-
+import PhraseView from './components/phraseView';
+import UserSignupView from './components/user_signupView';
+import styled from "styled-components";
+import { AccountBox } from "./components/accountBox";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const App = () => {
   // State object for the title of passphases
@@ -16,9 +25,6 @@ const App = () => {
 
   // State objects for the signup data
   const [signupList, setSignupList] = useState([{}]);
-  const [fullname, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   // Read all phrases
  
@@ -37,14 +43,6 @@ const addToHandler = () => {
   .then(res => console.log(res))
 }
 
-// Post User Sign up information
-const signUpHandler = () => {
-  axios.post('http://127.0.0.1:8000/api/user_signup/', {'fullname': fullname, 'email': email, 'password': password})
-  .then(res => console.log(res))
-}
-
-
-
 
 // Read all users
 
@@ -55,10 +53,6 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
     setSignupList(res.data)
   })
 });
-
-
-
-
 
 // Main body of application
   return (
@@ -72,31 +66,23 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
           <button className="btn btn-outline-danger" onClick={addToHandler}>Fire!</button>
         </span>
         <br/>
-
-        <div className="App_Login">
-      <h1>Sign Up</h1> 
-      <div className="card-body">
-        <h4>It will be fun</h4>
-        <span className="card-text">
-          <input className="mb-2 form-control titleIn" onChange={event => setFullName(event.target.value)} placeholder="Full Name"/>
-          <input className="mb-2 form-control titleIn" onChange={event => setEmail(event.target.value)} placeholder="Email Address"/>
-          <input className="mb-2 form-control titleIn" onChange={event => setPassword(event.target.value)} placeholder="Password"/>
-          <button className="btn btn-outline-danger" onClick={signUpHandler}>Sign Up</button>
-        </span>
-      </div>
-      </div>
-
-
-        
-
-        <br/>
         <br/>
         <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
 
       <div>
         <PhraseView phraseList={phraseList}/>
       </div>
-        <h5 className="card text-white bg-dark mb-3">All Passwords</h5>
+        <div className="App_Signup">
+      <h1>Sign Up</h1> 
+      <div className="card-body">
+        <h4>It will be fun</h4>
+        <AppContainer>
+      <AccountBox />
+        </AppContainer>
+      </div>
+      </div>
+        <br/>
+      <h5 className="card text-white bg-dark mb-3">All Passwords</h5>
       <div>
         <UserSignupView signupList={signupList}/>
       </div>
