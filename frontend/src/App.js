@@ -82,7 +82,7 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
       </div>
       </div>
         <br/>
-      <h5 className="card text-white bg-dark mb-3">All Passwords</h5>
+      <h5 className="card text-white bg-dark mb-3">Signed-Up Users</h5>
       <div>
         <UserSignupView signupList={signupList}/>
       </div>
