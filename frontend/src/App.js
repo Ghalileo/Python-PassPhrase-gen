@@ -4,18 +4,10 @@ import axios from 'axios';
 import PhraseView from './components/phraseView';
 import UserSignupView from './components/user_signupView';
 import styled from "styled-components";
-import { AccountBox } from "./components/accountBox";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Navigation from './components/Nav'
+import { AccountBox } from "./components/accountBox";
 
-const AppContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
 const App = () => {
   // State object for the title of passphases
@@ -78,9 +70,7 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
       <h1>Sign Up</h1> 
       <div className="card-body">
         <h4>It will be fun</h4>
-        <AppContainer>
-      <AccountBox />
-        </AppContainer>
+
       </div>
       </div>
         <br/>

@@ -1,4 +1,15 @@
 import {Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import styled from "styled-components";
+
+import { AccountBox } from "../accountBox";
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Navigation = () => {
     return (
@@ -14,10 +25,17 @@ const Navigation = () => {
     >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title id="offcanvasNavbarLabel">Username Holder</Offcanvas.Title>
+        <br>
+        </br>
+        <Offcanvas.Title id="offcanvasNavbarLabel">Email Holder</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
-          <Nav.Link href="#action1">Passwords</Nav.Link>
+        <div>
+        <AppContainer>
+          <AccountBox />
+        </AppContainer>
+        </div>
           <Nav.Link href="#action2">Other Items</Nav.Link>
           
         </Nav>
