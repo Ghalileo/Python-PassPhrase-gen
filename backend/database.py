@@ -3,7 +3,7 @@ import pydantic
 from model import Results, UserLoginSchema, UserSchema,UserSession
 from typing import List,Optional,TypedDict
 import asyncio
-
+import time
 
 #client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017')
 
@@ -15,12 +15,15 @@ user_login_collection = database.user_login
 user_session_collection = database.user_session
 
 async def create_phrase(phrase):
+    print('CREATE NEW PHRASE')
     document = Results(**phrase)
     document.passphrase_output = document.generate_phrases(document.phrases)
     result = await passphrase_collection.insert_one(document.__dict__)
     return document.__dict__
 
 async def fetch_all_phrases():
+    #time.sleep(1)
+    print('\t\tFETCHING ALL PHRASES')
     thephrases=[]
     for doc in await passphrase_collection.find({}).to_list(100):
         res = Results(**doc)
@@ -29,6 +32,7 @@ async def fetch_all_phrases():
     return thephrases
 
 async def fetch_all_phrases_by_email(email : str = pydantic.Field(default=None)):
+    print('FETCH ALL PHRASES BY EMAIL')
     thephrases=[]
 
     if email == None:
@@ -46,11 +50,13 @@ async def fetch_all_phrases_by_email(email : str = pydantic.Field(default=None))
     return thephrases
 
 async def update_phrase(title, pphrases):
+    print(f"{'UPDATING PHRASES':>10}")
     await passphrase_collection.update_one({"title": title}, {"$set": {"phrases": pphrases}})
     document = await passphrase_collection.find_one({"title": title})
     return document
 
 async def remove_phrase(title):
+    print('REMOVE PHRASE')
     await passphrase_collection.delete_one({"title": title})
     return True
 
@@ -58,17 +64,21 @@ async def remove_phrase(title):
 
 
 async def create_user(fullname,email,password):
+    print('CREATE A USER')
     document = UserSchema(**{"fullname": f"{fullname}","email":f"{email}","password":f"{password}"})
 
     result = await user_signup_collection.insert_one(document.__dict__)
     return document
 async def create_login_user(schema:UserLoginSchema):
+    print('LOGIN USER')
     document = UserLoginSchema(**{"email":f"{schema.email}","password":f"{schema.password}"})
 
     result = await user_login_collection.insert_one(document.__dict__)
     return document
 
 async def fetch_all_users():
+    #time.sleep(1)
+    print( ' FETCHING ALL USERS ')
     users=[]
     for doc in await user_signup_collection.find({}).to_list(100):
         res = UserSchema(**doc)
@@ -76,6 +86,7 @@ async def fetch_all_users():
     return users
 
 async def remove_user(fullname):
+    print('REMOVE USER')
     await user_signup_collection.delete_one({"fullname": fullname})
     return True
 

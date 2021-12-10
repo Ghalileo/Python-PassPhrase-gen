@@ -24,16 +24,35 @@ const App = () => {
 
  useEffect(() => {
   axios.get('http://127.0.0.1:8000/api/phrase/')
-    .then(res => {
-      setPhraseList(res.data)
-    })
-});
+  .then(res => {
+    setPhraseList(res.data)
+  })
+  .catch(function (error) {
+    if (error.response) {
+      // Request made and server responded
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
+
+  });
+
+},[]);
 
 
 // Post a phrase
 const addToHandler = () => {
   axios.post('http://127.0.0.1:8000/api/phrase/', {'title': title, 'phrases': phrases})
   .then(res => console.log(res))
+
+
+
 }
 
 
@@ -42,10 +61,27 @@ const addToHandler = () => {
 
 useEffect(() => {
 axios.get('http://127.0.0.1:8000/api/user_signup/')
-  .then(res => {
-    setSignupList(res.data)
-  })
+.then(res => {
+  setSignupList(res.data)
+})
+.catch(function (error) {
+  if (error.response) {
+    // Request made and server responded
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
+  } else if (error.request) {
+    // The request was made but no response was received
+    console.log(error.request);
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    console.log('Error', error.message);
+  }
+
 });
+
+},[]);
+
 
 // Main body of application
   return (
