@@ -13,12 +13,13 @@ from database import (
     fetch_all_users,
     create_user,
     create_login_user,
-    remove_user
+    remove_user,
+    fetch_all_phrases_by_email
 )
 from auth.jwt_handler import signJWT
 from auth.jwt_bearer import jwtBearer
 from fastapi import FastAPI, HTTPException, Body, Depends
-from model import Results, UserSchema, UserLoginSchema
+from model import Results, UserSchema, UserLoginSchema, UserSession
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import motor.motor_asyncio
@@ -44,6 +45,7 @@ def read_root():
     return{'passphrase_object':''}
 
 @app.get("/api/phrase",tags=['Phrase','Get All Phrases'])
+
 async def get_phrase():
     response = await fetch_all_phrases()
     return response
@@ -111,3 +113,10 @@ async def delete_user(fullname):
     if response:
         return "Item deleted succesfully!"
     raise HTTPException(404, f"Thre is no user with the fullname:  {fullname}")
+
+
+
+@app.get("/api/phrase",tags = ["User Sessions", "Get Phrases by Email"])
+async def get_phrases_by_email(email):
+    response = await fetch_all_phrases_by_email(email=None)
+    return response

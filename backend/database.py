@@ -1,39 +1,57 @@
 import motor.motor_asyncio
-from model import Results, UserLoginSchema, UserSchema
+import pydantic
+from model import Results, UserLoginSchema, UserSchema,UserSession
 from typing import List,Optional,TypedDict
 import asyncio
+
 
 #client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017')
 
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster')
 database = client.PhraseList
-collection = database.phrase
+passphrase_collection = database.phrase
 user_signup_collection = database.user_signup
 user_login_collection = database.user_login
+user_session_collection = database.user_session
 
 async def create_phrase(phrase):
     document = Results(**phrase)
-    ph = document.phrases
-
     document.passphrase_output = document.generate_phrases(document.phrases)
-    result = await collection.insert_one(document.__dict__)
+    result = await passphrase_collection.insert_one(document.__dict__)
     return document.__dict__
 
 async def fetch_all_phrases():
     thephrases=[]
-    for doc in await collection.find({}).to_list(100):
+    for doc in await passphrase_collection.find({}).to_list(100):
         res = Results(**doc)
         thephrases.append(res)
+
     return thephrases
 
+async def fetch_all_phrases_by_email(email : str = pydantic.Field(default=None)):
+    thephrases=[]
+
+    if email == None:
+        for doc in await passphrase_collection.find({}).to_list(100):
+            res = Results(**doc)
+            thephrases.append(res)
+        return thephrases
+    email_response = user_login_collection.find_one({'email':email})
+
+    for doc in await passphrase_collection.find({}).to_list(100):
+        res = Results(**doc)
+        if res.email == email_response:
+            thephrases.append(res)
+
+    return thephrases
 
 async def update_phrase(title, pphrases):
-    await collection.update_one({"title": title}, {"$set": {"phrases": pphrases}})
-    document = await collection.find_one({"title": title})
+    await passphrase_collection.update_one({"title": title}, {"$set": {"phrases": pphrases}})
+    document = await passphrase_collection.find_one({"title": title})
     return document
 
 async def remove_phrase(title):
-    await collection.delete_one({"title": title})
+    await passphrase_collection.delete_one({"title": title})
     return True
 
 
@@ -61,8 +79,10 @@ async def remove_user(fullname):
     await user_signup_collection.delete_one({"fullname": fullname})
     return True
 
+async def check_usersession(UserSession):
+    
 
-
+    pass
 #
 #r = {'title':'my_pass',"phrases":'testing this phrase'}
 #r2 = [r,{'title':'my_pass_2',"phrases":'testing this phrase too'}]
@@ -75,9 +95,11 @@ async def remove_user(fullname):
 #loop.run_until_complete(create_user('test'))
 
 
-##loop.run_until_complete(create_phrase(results[1].__dict__))
+#loop.run_until_complete(create_phrase(results[1].__dict__))
 #loop.run_until_complete(fetch_all_phrases())
 #loop.run_until_complete(update_phrase('My PassPhrase', 'new passphrase - Update Complete'))
 #loop.run_until_complete(fetch_all_phrases())
+
+
 #loop.run_until_complete(remove_phrase('meow mix meow'))
-#loop.run_until_complete(fetch_all_phrases())
+#loop.run_until_complete(fetch_all_phrases()

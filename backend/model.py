@@ -27,7 +27,7 @@ class Results(BaseModel):
     title: Optional[str]
     phrases: Optional[str]
     passphrase_output : Optional[str]
-
+    email : Optional[str]
 
  #   @pydantic.validator('phrases',allow_reuse=False)
     def check_passphrase_valid(cls,phrases:str):
@@ -88,22 +88,41 @@ class UserSchema(pydantic.BaseModel):
     fullname : str = pydantic.Field(default=None)
     email : pydantic.EmailStr = pydantic.Field(default=None)
     password : str = pydantic.Field(default=None)
+    signup_token : str = pydantic.Field(default=None)
     class Config:
         the_schema = {
             "user_demo you know we in the back": {
                 "name " : "Soulja Boi ",
                 "email" : "test@google.com",
-                "password" : "Tell em"
+                "password" : "Tell em",
+                "signup_token" : "header.properties_base64.signature"
             }
         }
 
 class UserLoginSchema(pydantic.BaseModel):
     email : pydantic.EmailStr = pydantic.Field(default=None)
     password : str = pydantic.Field(default=None)
+    token : str = pydantic.Field(default=None)
     class Config : 
         the_schema = {
             "user_demo but we in the back" : {
                 "email":"yams@google.com",
-                "password" : "yam yam"
+                "password" : "yam yam",
+                "token" : "header.properties_base64.signature"
             }
         }
+
+class UserSession(pydantic.BaseModel):
+
+    user_passphrases : str = pydantic.Field(default=None)
+    
+    user_credentials : str = pydantic.Field(default=None)
+    user_logins : str = pydantic.Field(default=None)
+    class Config : 
+        the_schema = {
+            "user_passphrases" : {"Results.dict"},
+            "user_credentials" : {"UserSchema.dict"},
+            "user_logins" : {"user_logins.dict"}
+        }
+
+   

@@ -121,6 +121,7 @@ export function AccountBox(props) {
       setActive("signin");
     }, 400);
   };
+  
 
   const contextValue = { switchToSignup, switchToSignin };
 
@@ -148,10 +149,23 @@ export function AccountBox(props) {
               <SmallText>Please sign-up to continue!</SmallText>
             </HeaderContainer>
           )}
+            {active === "sign_in_success" && (
+            <HeaderContainer>
+              <HeaderText>Username</HeaderText>
+              <HeaderText>Email</HeaderText>
+            </HeaderContainer>
+          )}
+            {active === "sign_up_success" && (
+            <HeaderContainer>
+              <HeaderText>Thank You for Signing up!</HeaderText>
+              <SmallText>Please Login to save your passphrases</SmallText>
+            </HeaderContainer>
+          )}
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
+      
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>
