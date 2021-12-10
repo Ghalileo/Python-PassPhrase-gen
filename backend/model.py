@@ -29,9 +29,9 @@ class Results(BaseModel):
     passphrase_output : Optional[str]
     email : Optional[str]
 
- #   @pydantic.validator('phrases',allow_reuse=False)
+    @pydantic.validator('phrases',allow_reuse=False)
     def check_passphrase_valid(cls,phrases:str):
-        print('started validator\n')
+        print('started phrases validator\n')
         try:
             phrases_split = phrases.split(' ')
             if len(phrases_split) <= 2:
@@ -69,7 +69,7 @@ class Results(BaseModel):
                 print('character swapping')
         new_passphrase = "".join(new_list)
         print(f'aye we did the test\t\tCHANGED-> {pass_input}\tTO-> {new_passphrase}')
-        print('Copied to clipboard')
+ #       print('Copied to clipboard')
 #        pyperclip.copy(new_passphrase)
          
         return new_passphrase
@@ -98,7 +98,6 @@ class UserSchema(pydantic.BaseModel):
                 "signup_token" : "header.properties_base64.signature"
             }
         }
-
 class UserLoginSchema(pydantic.BaseModel):
     email : pydantic.EmailStr = pydantic.Field(default=None)
     password : str = pydantic.Field(default=None)
@@ -118,6 +117,10 @@ class UserSession(pydantic.BaseModel):
     
     user_credentials : str = pydantic.Field(default=None)
     user_logins : str = pydantic.Field(default=None)
+
+    @pydantic.validator('user_credentials')
+    def check_user_credentials(cls,user_credentials: str):
+        print('check_user_session_credentials')
     class Config : 
         the_schema = {
             "user_passphrases" : {"Results.dict"},

@@ -29,7 +29,7 @@ import motor.motor_asyncio
 app = FastAPI()
 react_address = "http://127.0.0.1:3000"
 fastapi_address = "http://127.0.0.1:8000"
-origins = "*"
+origins = [react_address,fastapi_address,"http://127.0.0.1:8080","*"]
 #users= [UserLoginSchema(**{"fullname":"oli","email":"oli@google.com","password":"123123"})]
 # Parameters for middleware(software bridging operating system, database, or applications on a network)
 app.add_middleware(
@@ -38,6 +38,7 @@ app.add_middleware(
     allow_credentials = True, 
     allow_methods = ["*"],
     allow_headers = ["*"]
+
 )
 
 @app.get("/")
@@ -47,18 +48,15 @@ def read_root():
 @app.get("/api/phrase",tags=['Phrase','Get All Phrases'])
 
 async def get_phrase():
+    print('get_phrase')
     response = await fetch_all_phrases()
-    return response
+    if response:
 
-#@app.get("//api/phrases/{title}", response_model=Results)
-#async def get_phrase_by_title(title):
-#    response = await fetch_one_phrase(title)
-#    if response:
-#        return response
-#    raise HTTPException(404, f"There is no phrase with the title {title}")
+        return response
 
 @app.post("/api/phrase", response_model=Results,tags= ['Phrase','Create New Phrase'])
 async def post_phrase(phrase:Results):
+    print('post_phrase')
     response = await create_phrase(phrase.dict())
     if response:
         return response
@@ -67,6 +65,7 @@ async def post_phrase(phrase:Results):
 
 @app.put("/api/phrase/{title}",dependencies=[Depends(jwtBearer())], response_model=Results,tags=['Phrase','Update Phrase by Title'])
 async def put_phrase(title: str, phra: str):
+    print('put_phrase')
     response = await update_phrase(title, phra)
     if response:
         return response
@@ -75,6 +74,7 @@ async def put_phrase(title: str, phra: str):
 
 @app.delete("/api/phrase/{title}",tags=['Phrase','Delete Phrase by Title'])
 async def delete_phrase(title):
+    print('delete_phrase')
     response = await remove_phrase(title)
     if response:
         return "Item deleted succesfully!"
@@ -82,13 +82,16 @@ async def delete_phrase(title):
 
 @app.post("/api/user_signup/",tags=["Authorization"])
 async def signup_user(user:UserSchema = Body(default=None)):
+    print('signup_user')
     response = await create_user(user.fullname,user.email,user.password)
     return signJWT(user.email)
 
 
 @app.post("/api/user_login/", tags= ["Authorization"])
 async def login_user(user: UserLoginSchema = Body(default=None)):
-    if check_user(user, await get_users()):
+    print('login_user')
+    user_list = await get_users()
+    if check_user(user, user_list ):
         response = await create_login_user(user)
         return signJWT(user.email)
     else:
@@ -96,6 +99,7 @@ async def login_user(user: UserLoginSchema = Body(default=None)):
             "ERROR":"INVALID USER/PASS"
         }
 def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
+    print('check_user')
     users = user_list
     for user in users:
         if user.email == data.email and user.password == data.password:
@@ -104,11 +108,14 @@ def check_user(data: UserLoginSchema,user_list : List[UserSchema]):
 
 @app.get("/api/user_signup/",tags=['Authorization','Get All Users'])
 async def get_users():
+    print('get_users')
     response = await fetch_all_users()
-    return response
+    if response:
+        return response
 
 @app.delete("/api/user_signup/{fullname}",tags=['Authorization','Delete Password by Fullname'])
 async def delete_user(fullname):
+    print('delete_user')
     response = await remove_user(fullname)
     if response:
         return "Item deleted succesfully!"
@@ -118,5 +125,6 @@ async def delete_user(fullname):
 
 @app.get("/api/phrase",tags = ["User Sessions", "Get Phrases by Email"])
 async def get_phrases_by_email(email):
+    print('get_phrases_by_email')
     response = await fetch_all_phrases_by_email(email=None)
     return response
