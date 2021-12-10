@@ -36,7 +36,7 @@ const Navigation = () => {
           <AccountBox />
         </AppContainer>
         </div>
-          <Nav.Link href="#action2">Other Items</Nav.Link>
+          {/* <Nav.Link href="#action2">Other Items</Nav.Link> */}
           
         </Nav>
         
