@@ -5,9 +5,7 @@ export default function UserSignupView(props) {
     return (
         <div>
             <ul className="userSignUpdata">
-                {props.signupList.map(signup => {
-                    return <UserSignup signup={signup} />
-                } )}
+                {props.signupList.map(yamz =><div key={yamz.toString()} ><UserSignup signup={yamz} /> </div>)}
             </ul>
         </div>
     )
