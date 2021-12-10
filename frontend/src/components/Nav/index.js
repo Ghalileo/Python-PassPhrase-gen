@@ -1,5 +1,6 @@
 import {Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
 import styled from "styled-components";
+import './style.css'
 
 import { AccountBox } from "../accountBox";
 const AppContainer = styled.div`
@@ -14,7 +15,7 @@ const AppContainer = styled.div`
 const Navigation = () => {
     return (
         <>
-        <Navbar bg="light" expand={false}>
+        <Navbar className="theNavBar" bg="light" expand={false}>
   <Container fluid>
   
     <Navbar.Toggle aria-controls="offcanvasNavbar" />

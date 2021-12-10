@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
-import PhraseView from './components/phraseView';
-import UserSignupView from './components/user_signupView';
+import PhraseView from './components/PhraseList/phraseView';
+import UserSignupView from './components/SignUpList/user_signupView';
 import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Navigation from './components/Nav'
@@ -51,6 +51,9 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
   return (
     <div className="App">
       <Navigation/>
+      <br/>
+      <br/>
+      <br/>
       <h1>Passphrase</h1> 
       <div className="card-body">
         <h4>Add a phrase</h4>
