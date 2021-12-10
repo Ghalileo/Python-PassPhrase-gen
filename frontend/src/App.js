@@ -20,7 +20,7 @@ const App = () => {
   const [signupList, setSignupList] = useState([{}]);
 
   // Read all phrases
- 
+
 
  useEffect(() => {
   axios.get('http://127.0.0.1:8000/api/phrase/')
@@ -28,18 +28,12 @@ const App = () => {
       setPhraseList(res.data)
     })
 });
-
-
 // Post a phrase
 const addToHandler = () => {
   axios.post('http://127.0.0.1:8000/api/phrase/', {'title': title, 'phrases': phrases})
   .then(res => console.log(res))
 }
-
-
 // Read all users
-
-
 useEffect(() => {
 axios.get('http://127.0.0.1:8000/api/user_signup/')
   .then(res => {
@@ -54,7 +48,7 @@ axios.get('http://127.0.0.1:8000/api/user_signup/')
       <br/>
       <br/>
       <br/>
-      <h1>Passphrase</h1> 
+      <h1>Welcome to Passphrase</h1> 
       <div className="card-body">
         <h4>Add a phrase</h4>
         <span className="card-text">
