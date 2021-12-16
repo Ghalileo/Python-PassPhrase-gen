@@ -36,11 +36,8 @@ const signUpHandler = () => {
       <Marginer direction="vertical" margin={10} />
       <SubmitButton className="btn btn-outline-danger" onClick={signUpHandler}>Signup</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink href="#">
+      <MutedLink href="#" onClick={switchToSignin}>
         Already have an account?
-        {/* <BoldLink href="#" onClick={switchToSignin}>
-          Signin
-        </BoldLink> */}
       </MutedLink>
     </BoxContainer>
   );
