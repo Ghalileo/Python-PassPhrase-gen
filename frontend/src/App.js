@@ -17,9 +17,10 @@ const App = () => {
       <h1>Welcome to Passphrase</h1> 
       <div className="card-body">
         <h4>Add a phrase</h4>
-        <div>
+        
           <POSTPhrase/> 
-        </div>
+        
+        <br/>
         <br/>
         <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
         <div>        

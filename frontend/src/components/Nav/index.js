@@ -1,6 +1,10 @@
 import {Navbar, Container, Offcanvas, Nav} from 'react-bootstrap';
 import styled from "styled-components";
 import './style.css'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+
+
 
 import { AccountBox } from "../accountBox";
 const AppContainer = styled.div`
@@ -12,7 +16,17 @@ const AppContainer = styled.div`
   justify-content: center;
 `;
 
+
+
 const Navigation = () => {
+  // const [userName, setuserName] = useState('');
+  const [userEmail, setuserEmail] = useState('');
+
+  // Show if a user is logged into applicatiom=n
+const loginStatusHandler = () => {
+  axios.get('http://127.0.0.1:8000/api/user_login', {'userEmail': userEmail})
+  .then(res => console.log(res))
+}
     return (
         <>
         <Navbar className="theNavBar" bg="light" expand={false}>

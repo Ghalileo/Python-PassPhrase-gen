@@ -34,11 +34,9 @@ export function LoginForm(props) {
       <Marginer direction="vertical" margin="1.6em" />
       <SubmitButton className="btn btn-outline-danger" onClick={logInHandler}>Login</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink href="#">
+      <MutedLink href="#" onClick={switchToSignup}>
         Don't have an accoun?{" "}
-        {/* <BoldLink href="#" onClick={switchToSignup}>
-          Signup
-        </BoldLink> */}
+        
       </MutedLink>
     </BoxContainer>
   );
