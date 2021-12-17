@@ -20,11 +20,11 @@ const AppContainer = styled.div`
 
 const Navigation = () => {
   // const [userName, setuserName] = useState('');
-  const [userEmail, setuserEmail] = useState('');
+  const [email, setEmail] = useState('');
 
-  // Show if a user is logged into applicatiom=n
+  // Show if a user is logged into application
 const loginStatusHandler = () => {
-  axios.get('http://127.0.0.1:8000/api/user_login', {'userEmail': userEmail})
+  axios.get('http://127.0.0.1:8000/api/user_login', {'email': email})
   .then(res => console.log(res))
 }
     return (

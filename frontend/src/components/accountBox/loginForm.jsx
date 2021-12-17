@@ -36,7 +36,6 @@ export function LoginForm(props) {
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#" onClick={switchToSignup}>
         Don't have an accoun?{" "}
-        
       </MutedLink>
     </BoxContainer>
   );

@@ -38,7 +38,6 @@ const signUpHandler = () => {
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#" onClick={switchToSignin}>
         Already have an account?
-        
       </MutedLink>
     </BoxContainer>
   );
