@@ -1,46 +1,30 @@
 import React from 'react';
+import {BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Navigation from './components/Nav'
-import POSTPhrase from './components/PostPhrase/postPhrase';
-import GETPhrases from './components/GetPhrases/getPhrases';
-import GETSignups from './components/GetSignups/getSignups';
+import Home from './pages/Home'
 const App = () => {
 
 
   return (
-    <div className="App">
+    
+    <div className="app">
       <Navigation/>
       <br/>
       <br/>
       <br/>
-      <h1>Welcome to Passphrase</h1> 
-      <div className="card-body">
-        <h4>Add a phrase</h4>
+      
+      <BrowserRouter>
+      <Routes >
+        <Route path="/" element={<Home/>}/>
         
-          <POSTPhrase/> 
-        
-        <br/>
-        <br/>
-        <h5 className="card text-white bg-dark mb-3">Your Phrases</h5>
-        <div>        
-          <GETPhrases/>  
-        </div>
-        <br/>
-        <div className="App_Signup">
-          <h1>Sign Up</h1> 
-          <div className="card-body">
-            <h4>It will be fun</h4>
-          </div>
-        </div>
-        <br/>
-        <h5 className="card text-white bg-dark mb-3">Signed-Up Users</h5>
-        <div>
-          <GETSignups/>
-        </div>
-      </div>
-      <h6>Copyright 2021, All rights reserved &copy;</h6>
-    </div>
+          
+      </Routes >
+    </BrowserRouter>
+    </div>  
+     
+    
   );
 }
 

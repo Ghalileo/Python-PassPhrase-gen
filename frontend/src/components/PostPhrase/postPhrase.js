@@ -15,7 +15,7 @@ const addToHandler = () => {
     <span className="card-text">
       <input className="mb-2 form-control titleIn" onChange={event => setTitle(event.target.value)} placeholder="title"/>
       <input className="mb-2 form-control titleIn" onChange={event => setPhrases(event.target.value)} placeholder="Phrase"/>
-      <button className="btn btn-outline-danger" onClick={addToHandler}>Fire!</button>
+      <div style={{textAlign:"center"}}><button className="btn btn-outline-danger" onClick={addToHandler}>Fire!</button></div>
     </span> 
   )
 }
