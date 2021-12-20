@@ -5,13 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Nav'
 import Home from './pages/Home'
 import AppLayout from './pages/Layout';
+import ProtectedRoute from './pages/ProtectedRoute';
 const App = () => {
 
 
   return (
     
     <div className="app">
-      <Navigation/>
       <BrowserRouter>
       <Routes >
         <Route exact path="/" element={<Home/>}/>

@@ -5,8 +5,12 @@ const Home = () => {
 
     return (
         <div>
+            
+            
+            
             <h1 style={{textAlign: 'center'}}>Welcome to PassPhrase</h1>
-            <div style={{textAlign:'center'}}>
+            <br/>
+            <div style={{paddingLeft:'500px'}}>
                 <AccountBox/>
             </div>
         </div>

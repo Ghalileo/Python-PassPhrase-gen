@@ -42,6 +42,7 @@ const loginStatusHandler = () => {
         <Offcanvas.Title id="offcanvasNavbarLabel">Username Holder</Offcanvas.Title>
         <br>
         </br>
+        <button className='fa fa-home' style={{position:"relative", right:"20px"}}><a href="/"  >Home</a></button>
         <Offcanvas.Title id="offcanvasNavbarLabel">Email Holder</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
