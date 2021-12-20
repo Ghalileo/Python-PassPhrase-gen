@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Navigation from './components/Nav'
 import Home from './pages/Home'
+import AppLayout from './pages/Layout';
 const App = () => {
 
 
@@ -11,15 +12,11 @@ const App = () => {
     
     <div className="app">
       <Navigation/>
-      <br/>
-      <br/>
-      <br/>
-      
       <BrowserRouter>
       <Routes >
-        <Route path="/" element={<Home/>}/>
-        
-          
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/app" element={<AppLayout/>}/>
+        <Route path="*" element={ () => "404 NOT FOUND"}/>
       </Routes >
     </BrowserRouter>
     </div>  

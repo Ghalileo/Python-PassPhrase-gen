@@ -59,6 +59,9 @@ const loginStatusHandler = () => {
     </Navbar.Offcanvas>
   </Container>
 </Navbar>
+<br/>
+      <br/>
+      <br/>
         </>
     )
 }
