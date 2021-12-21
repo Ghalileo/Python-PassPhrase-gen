@@ -1,12 +1,12 @@
 import React from 'react'
-import SiderDemo from '../components/layout/layout'
+import MainAppLayout from '../components/layout/layout'
 import POSTPhrase from '../components/PostPhrase/postPhrase'
 import GETPhrases from '../components/GetPhrases/getPhrases'
 import GETSignups from '../components/GetSignups/getSignups'
 import Navigation from '../components/Nav'
 
 const AppLayout = () => {
-
+    // Original Return
     // return (
     //     <div>
     //         <Navigation/>
@@ -26,10 +26,11 @@ const AppLayout = () => {
         
 
     // )
+    // New Return
     return(
         <div>
             {/* <Navigation/> */}
-            <SiderDemo
+            <MainAppLayout
             
             />
         </div>

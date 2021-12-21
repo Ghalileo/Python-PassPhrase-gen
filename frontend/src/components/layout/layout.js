@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import axios from 'axios'
 import GETPhrases from '../GetPhrases/getPhrases';
@@ -17,34 +17,24 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-class SiderDemo extends React.Component {
-  state = {
-    collapsed: false,
-  };
+const displayUserData = () => {
+    axios.post('http://127.0.0.1:8000/api/user_login', )
+}
 
-  onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
+const MainAppLayout = () => {
+  
+  const [collapsed, setCollapsed] = useState(false)
+  const [activeUser, setActiveUser] = useState('')
+  
 
-  render() {
-    const { collapsed } = this.state;
+   
+    
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+        <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
           <div className="logo" />
           <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+         
 
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             {/* <Menu.Item key="1" icon={<PieChartOutlined />}>
@@ -54,7 +44,7 @@ class SiderDemo extends React.Component {
               Option 2
             </Menu.Item> */}
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Yams</Menu.Item>
+              <Menu.Item key="3" >Yams</Menu.Item>
               {/* <Menu.Item key="4">Bill</Menu.Item>
               <Menu.Item key="5">Alex</Menu.Item> */}
             </SubMenu>
@@ -62,7 +52,7 @@ class SiderDemo extends React.Component {
               <Menu.Item key="6">Team 1</Menu.Item>
               <Menu.Item key="8">Team 2</Menu.Item>
             </SubMenu> */}
-            <Menu.Item key="9" icon={<FileOutlined />}>
+            <Menu.Item key="9" mode="inline"icon={<FileOutlined />}>
               Phrases
             </Menu.Item>
           </Menu>
@@ -89,6 +79,6 @@ class SiderDemo extends React.Component {
       </Layout>
     );
   }
-}
 
-export default SiderDemo;
+
+export default MainAppLayout;
