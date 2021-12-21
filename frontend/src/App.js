@@ -13,11 +13,11 @@ const App = () => {
     
     <div className="app">
       <BrowserRouter>
-      <Routes >
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/app" element={<AppLayout/>}/>
-        <Route path="*" element={ () => "404 NOT FOUND"}/>
-      </Routes >
+        <Routes >
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/app" element={<AppLayout/>}/>
+          <Route path="*" element={ () => "404 NOT FOUND"}/>
+        </Routes >
     </BrowserRouter>
     </div>  
      
