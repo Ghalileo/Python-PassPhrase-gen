@@ -17,15 +17,18 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const displayUserData = () => {
-    axios.post('http://127.0.0.1:8000/api/user_login', )
-}
+
 
 const MainAppLayout = () => {
-  
+//   State function to collapse antD component
   const [collapsed, setCollapsed] = useState(false)
+//   State function to achieve active User Data
   const [activeUser, setActiveUser] = useState('')
-  
+
+//   Axios request to obtain active user data
+  const displayUserData = () => {
+    axios.post('http://127.0.0.1:8000/api/user_login',{ 'fullname': activeUser, } )
+}
 
    
     

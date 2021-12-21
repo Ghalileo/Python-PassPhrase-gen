@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Nav'
 import Home from './pages/Home'
 import AppLayout from './pages/Layout';
+import NotFound from './pages/NotFound';
 import ProtectedRoute from './pages/ProtectedRoute';
 const App = () => {
 
@@ -16,9 +17,9 @@ const App = () => {
         <Routes >
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/app" element={<AppLayout/>}/>
-          <Route path="*" element={ () => "404 NOT FOUND"}/>
+          <Route  path="*" element={<NotFound/>}/>
         </Routes >
-    </BrowserRouter>
+      </BrowserRouter>
     </div>  
      
     
