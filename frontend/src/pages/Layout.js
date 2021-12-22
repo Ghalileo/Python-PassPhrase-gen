@@ -29,10 +29,7 @@ const AppLayout = () => {
     // New Return
     return(
         <div>
-            {/* <Navigation/> */}
-            <MainAppLayout
-            
-            />
+            <MainAppLayout/>
         </div>
     )
 }

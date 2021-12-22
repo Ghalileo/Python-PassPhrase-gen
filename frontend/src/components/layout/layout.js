@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import axios from 'axios'
 import GETPhrases from '../GetPhrases/getPhrases';
@@ -20,16 +20,38 @@ const { SubMenu } = Menu;
 
 
 const MainAppLayout = () => {
+  
 //   State function to collapse antD component
   const [collapsed, setCollapsed] = useState(false)
 //   State function to achieve active User Data
   const [activeUser, setActiveUser] = useState('')
 
-//   Axios request to obtain active user data
-  const displayUserData = () => {
-    axios.post('http://127.0.0.1:8000/api/user_login',{ 'fullname': activeUser, } )
-}
+  const [email, setEmail] = useState([{}])
 
+
+//   Axios request to obtain active user data
+//   const displayUserData = () => {
+//     axios.post('http://127.0.0.1:8000/api/user_login',{ 'fullname': activeUser, } )
+// }
+
+// Show if a user is logged into application
+// useEffect(() => {
+//   axios.get('http://127.0.0.1:8000/api/user_login')
+//   .then(res => {
+//     setEmail(res.data)
+//   }).catch((err) => {
+//     if (err.response)  {
+//       console.log(err.response.data)
+//       console.log(err.response.status)
+//       console.log(err.response.header)
+//     } else if(err.request) {
+//       console.log(err.request);
+//     } else {
+//       console.log("Error", err.message)
+//     }
+
+//   })
+// },[])
    
     // Full Layout of application
     return (
@@ -65,7 +87,7 @@ const MainAppLayout = () => {
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Yams</Breadcrumb.Item>
+              <Breadcrumb.Item>Yams, </Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 <h2 style={{textAlign:"center"}}>Add a Phrase</h2>

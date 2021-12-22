@@ -11,13 +11,12 @@ axios.delete(`http://127.0.0.1:8000/api/user_signup/${fullname}`)
 
 // Generated HTML Of user_signupItem
 return(
-<div>
-<p>
-<span style={{ fontWeight: 'bold, underline'}}>{props.signup.fullname} : {props.signup.email} : </span>{props.signup.password}
-<button onClick={() => deleteSignupHandler(props.signup.fullname)} className="btn btn-outline-danger">X</button>
-</p>
-
-</div>
+  <div>
+    <p>
+      <span style={{ fontWeight: 'bold, underline'}}>{props.signup.fullname} : {props.signup.email} : </span>{props.signup.password}
+      <button onClick={() => deleteSignupHandler(props.signup.fullname)} className="btn btn-outline-danger">X</button>
+    </p>
+  </div>
 
 )
 
