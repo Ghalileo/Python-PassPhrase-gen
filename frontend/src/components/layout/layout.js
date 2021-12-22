@@ -5,7 +5,7 @@ import GETPhrases from '../GetPhrases/getPhrases';
 import POSTPhrase from '../PostPhrase/postPhrase';
 import GETSignups from '../GetSignups/getSignups';
 
-import 'antd/dist/antd.css';
+
 import {
   DesktopOutlined,
   PieChartOutlined,
