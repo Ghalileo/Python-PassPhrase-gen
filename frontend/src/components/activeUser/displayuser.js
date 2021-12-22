@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import axios from "axios";
 import ActiveUserView from './active_userView'
 
-const GetActiveUser = () => {
+const DisplayUser = () => {
 // State object to collect the active user based on jwt token
     const [activeUser, setActiveUser] = useState([{}])
 // Show if a user is logged into application
@@ -31,4 +31,4 @@ const GetActiveUser = () => {
   )
 }
 
-export default GetActiveUser;
+export default DisplayUser;
