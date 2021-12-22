@@ -34,24 +34,6 @@ const MainAppLayout = () => {
 //     axios.post('http://127.0.0.1:8000/api/user_login',{ 'fullname': activeUser, } )
 // }
 
-// Show if a user is logged into application
-// useEffect(() => {
-//   axios.get('http://127.0.0.1:8000/api/user_login')
-//   .then(res => {
-//     setEmail(res.data)
-//   }).catch((err) => {
-//     if (err.response)  {
-//       console.log(err.response.data)
-//       console.log(err.response.status)
-//       console.log(err.response.header)
-//     } else if(err.request) {
-//       console.log(err.request);
-//     } else {
-//       console.log("Error", err.message)
-//     }
-
-//   })
-// },[])
    
     // Full Layout of application
     return (

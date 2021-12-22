@@ -1,15 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 
-const activeUser = () => {
+const ActiveUser = (props) => {
 
     return(
         <>
-            <div>
-
-            </div>
+            <p>{props.login.email}</p>
         </>
     )
 }
 
-export default activeUser;
+export default ActiveUser;

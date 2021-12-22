@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
-import axios from 'axios'
-import activeUser from './active_user'
+import ActiveUser from './active_user'
 
-const activeUserView = () => {
+const ActiveUserView = (props) => {
+
    return (
        <>
+        <p className="activeUser">
+            {props.activeUser.map(theuser => <div key={theuser.toString()}><ActiveUser activeUser={theuser}/></div>)}
+        </p>
        </>
    )
 }
 
-export default activeUserView;
+export default ActiveUserView;
