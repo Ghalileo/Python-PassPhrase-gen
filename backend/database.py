@@ -13,7 +13,7 @@ passphrase_collection = database.phrase
 user_signup_collection = database.user_signup
 user_login_collection = database.user_login
 user_session_collection = database.user_session
-
+# Defining parameters of phrase section of application
 async def create_phrase(phrase):
     print('CREATE NEW PHRASE')
     document = Results(**phrase)
@@ -61,7 +61,7 @@ async def remove_phrase(title):
     return True
 
 
-
+# Defining parameters for user section of application
 
 async def create_user(fullname,email,password):
     print('CREATE A USER')
