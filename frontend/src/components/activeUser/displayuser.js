@@ -5,7 +5,7 @@ import ActiveUserView from './active_userView'
 const DisplayUser = () => {
 // State object to collect the active user based on jwt token
     const [activeUser, setActiveUser] = useState([{}])
-// Show if a user is logged into application
+// Show if a user is logged into application.  Need new function on back-end strictly to display active user
     useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/user_login')
     .then(res => {

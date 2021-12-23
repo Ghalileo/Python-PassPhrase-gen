@@ -26,7 +26,7 @@ const MainAppLayout = () => {
 //   State function to achieve active User Data
   const [activeUser, setActiveUser] = useState('')
 
-  const [email, setEmail] = useState([{}])
+
 
 
 //   Axios request to obtain active user data
