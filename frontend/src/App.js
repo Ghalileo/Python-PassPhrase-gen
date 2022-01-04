@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import AppLayout from './pages/Layout';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './pages/ProtectedRoute';
+
 const App = () => {
   return (
     <div className="app">

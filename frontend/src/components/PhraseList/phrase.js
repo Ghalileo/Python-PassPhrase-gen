@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import './phrase.css'
 
 // Defined variable for phrase item component which will handle the location of generated phrases
 const PhraseItem = (props) => {
@@ -14,7 +15,7 @@ return(
 <div>
 <p>
 <span style={{ fontWeight: 'bold, underline'}}>{props.phrase.title} :</span>{props.phrase.passphrase_output}
-<button onClick={() => deletePhraseHandler(props.phrase.title)} className="btn btn-outline-danger">X</button>
+<button onClick={() => deletePhraseHandler(props.phrase.title)} className="btn btn-outline-danger deletePhraseBtn">X</button>
 </p>
 
 </div>

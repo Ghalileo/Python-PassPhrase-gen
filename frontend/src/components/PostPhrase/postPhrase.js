@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import axios from 'axios';
+import './style.css'
 
 export default function POSTPhrase() {
 
@@ -15,7 +16,7 @@ const addToHandler = () => {
     <span className="card-text">
       <input className="mb-2 form-control titleIn" onChange={event => setTitle(event.target.value)} placeholder="title"/>
       <input className="mb-2 form-control titleIn" onChange={event => setPhrases(event.target.value)} placeholder="Phrase"/>
-      <div style={{textAlign:"center"}}><button className="btn btn-outline-danger" onClick={addToHandler}>Fire!</button></div>
+      <div style={{textAlign:"center"}}><button className="btn btn-outline-primary generateButton" onClick={addToHandler}>Generate!</button></div>
     </span> 
   )
 }
