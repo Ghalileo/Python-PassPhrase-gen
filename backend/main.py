@@ -79,7 +79,8 @@ async def delete_phrase(title):
     if response:
         return "Item deleted succesfully!"
     raise HTTPException(404, "Thre is no phrase with the title {phrase}")
-
+    
+# Beginning of Authorization Section of application 
 @app.post("/api/user_signup/",tags=["Authorization"])
 async def signup_user(user:UserSchema = Body(default=None)):
     print('signup_user')
@@ -112,6 +113,8 @@ async def get_users():
     response = await fetch_all_users()
     if response:
         return response
+# Defining route to get active user (Work in Progress)
+# @app.get("/api/user_login/", tags=['Authorization', 'Get Active User'])
 
 @app.delete("/api/user_signup/{fullname}",tags=['Authorization','Delete Password by Fullname'])
 async def delete_user(fullname):
