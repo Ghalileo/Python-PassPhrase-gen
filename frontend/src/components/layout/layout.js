@@ -51,7 +51,7 @@ const MainAppLayout = () => {
               Option 2
             </Menu.Item> */}
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3" ><a href="/profile">User Profile Link</a></Menu.Item>
+              <Menu.Item key="3" ><a href="/profile">Profile</a></Menu.Item>
               {/* <Menu.Item key="4">Bill</Menu.Item>
               <Menu.Item key="5">Alex</Menu.Item> */}
             </SubMenu>
