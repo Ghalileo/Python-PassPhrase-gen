@@ -15,7 +15,7 @@ const NotFound = () => {
         <br/>
         
         <h1 style={{textAlign:"center"}}>404 - Not Found</h1>
-        <div style={{textAlign:"center"}}><Link  to="/">Go Home</Link></div>
+        <div style={{textAlign:"center"}}><Link  to="/app">Return to App</Link></div>
     </div>
     )
 };
