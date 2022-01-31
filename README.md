@@ -6,7 +6,7 @@
   
   # Description 
 
-  An application which generates an acronym for a given phrase
+  A Farm Stack application which generates an acronym for a given phrase.
 
   Table of Contents |
   ----------------- |
@@ -18,7 +18,7 @@
   
 
   # Installation 
-  N/A
+  [URL]
 
   # Usage 
   [URL]
