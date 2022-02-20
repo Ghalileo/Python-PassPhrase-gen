@@ -24,7 +24,7 @@
   [URL]
 
   # User Story
-  As a user living in the digital age, I NEED a secure password WHICH is unique AND memorable.
+  As a user living in the digital age, I NEED a means to generate a secure password WHICH is unique AND memorable.
 
 
   # Contribution 
