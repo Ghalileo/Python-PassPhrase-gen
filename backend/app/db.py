@@ -14,7 +14,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(
 db = client["PassPhraseGenerator"]
 users_collection = db["users"]
 phrases_collection = db['passphrases']
-new_doc_collection = db['test_user_phrases']
+user_phrases_collection = db['user_phrases']
 async def get_user_db():
     yield MongoDBUserDatabase(UserDB, users_collection)
 
@@ -22,18 +22,13 @@ async def create_phrase(phrase:Results,user:User):
     print('CREATE NEW PHRASE')
     document = Results(**phrase)
     document.passphrase_output = document.generate_phrases(document.phrases)
-    print('check 1')
-    new_doc = UserPhrase(**{"user_passphrases":document.dict(),'user':user})
-    print('check 2')
-
-    result = await new_doc_collection.insert_one(new_doc.dict())
-    print('check 3')
-
-    return new_doc
+    user_phrases = UserPhrase(**{"user_passphrases":document.dict(),'user':user})
+    result = await user_phrases_collection.insert_one(user_phrases.dict())
+    return user_phrases
 
 async def get_phrases_by_user(user:User):
     thephrases = []
-    for doc in await new_doc_collection.find({}).to_list(100):
+    for doc in await user_phrases_collection.find({}).to_list(100):
         response = UserPhrase(**doc)
         if response.user.email == user.email:
             thephrases.append(response)
