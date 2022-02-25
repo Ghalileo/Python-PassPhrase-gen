@@ -1,9 +1,9 @@
-from fastapi.datastructures import Default
-from pydantic import BaseModel
-from typing import Optional
+from datetime import datetime
+from typing import List, Optional
+#from app.models import UserDB
 import pydantic
-import regex as re
-import pyperclip
+
+
 global char_repl_list
 char_repl_list = {'l':'1','L':'1',
     'i':'1','!':'1','I':'1', 
@@ -21,13 +21,11 @@ class PassPhraseLengthError(Exception):
         self.title = title
         self.message = message
         super().__init__(message)
-
-class Results(BaseModel):
+class Results(pydantic.BaseModel):
     _id: Optional[str]
     title: Optional[str]
     phrases: Optional[str]
     passphrase_output : Optional[str]
-    email : Optional[str]
 
     @pydantic.validator('phrases',allow_reuse=False)
     def check_passphrase_valid(cls,phrases:str):
@@ -73,59 +71,23 @@ class Results(BaseModel):
 #        pyperclip.copy(new_passphrase)
          
         return new_passphrase
-    @staticmethod
-    def get_Passphrase_from_User():
-        user_input = input('Please Enter Phrase:\t')
-        user_input = re.sub("\s+"," ",user_input)
-        return user_input
-
-class Config(Results):
-    allow_mutation=True
-    allow_extra='ignore'
 
 
-class UserSchema(pydantic.BaseModel):
-    fullname : str = pydantic.Field(default=None)
-    email : pydantic.EmailStr = pydantic.Field(default=None)
-    password : str = pydantic.Field(default=None)
-    signup_token : str = pydantic.Field(default=None)
-    class Config:
-        the_schema = {
-            "user_demo you know we in the back": {
-                "name " : "Soulja Boi ",
-                "email" : "test@google.com",
-                "password" : "Tell em",
-                "signup_token" : "header.properties_base64.signature"
-            }
-        }
-class UserLoginSchema(pydantic.BaseModel):
-    email : pydantic.EmailStr = pydantic.Field(default=None)
-    password : str = pydantic.Field(default=None)
-    token : str = pydantic.Field(default=None)
-    class Config : 
-        the_schema = {
-            "user_demo but we in the back" : {
-                "email":"yams@google.com",
-                "password" : "yam yam",
-                "token" : "header.properties_base64.signature"
-            }
-        }
+# For PostDisplay
+class Comment(pydantic.BaseModel):
+  text: str
+  username: str
+  timestamp: datetime
+  class Config():
+    orm_mode = True
 
-class UserSession(pydantic.BaseModel):
-
-    user_passphrases : str = pydantic.Field(default=None)
-    
-    user_credentials : str = pydantic.Field(default=None)
-    user_logins : str = pydantic.Field(default=None)
-
-    @pydantic.validator('user_credentials')
-    def check_user_credentials(cls,user_credentials: str):
-        print('check_user_session_credentials')
-    class Config : 
-        the_schema = {
-            "user_passphrases" : {"Results.dict"},
-            "user_credentials" : {"UserSchema.dict"},
-            "user_logins" : {"user_logins.dict"}
-        }
-
-   
+class PostDisplay(pydantic.BaseModel):
+  id: int
+  image_url: str
+  image_url_type: str
+  caption: str
+  timestamp: datetime
+#  user: UserDB
+  comments: List[Comment]
+  class Config():
+    orm_mode = True
