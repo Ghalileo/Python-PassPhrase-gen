@@ -2,9 +2,20 @@ from fastapi import Depends, FastAPI
 from app.router import passphrase
 from app.models import UserDB
 from app.users import auth_backend, current_active_user, fastapi_users
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
+# Parameters for middleware(software bridging operating system, database, or applications on a network)
+react_address = "http://127.0.0.1:3000"
+fastapi_address = "http://127.0.0.1:8000"
+origins = [react_address,fastapi_address,"http://127.0.0.1:8080","*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True, 
+    allow_methods = ["*"],
+    allow_headers = ["*"]
+)
 app.include_router(
     fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
 )
