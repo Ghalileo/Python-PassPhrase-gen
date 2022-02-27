@@ -4,12 +4,13 @@ from app.router.schemas import Results
 import motor.motor_asyncio
 from fastapi_users.db import MongoDBUserDatabase
 from fastapi import Depends
+from decouple import config
 
 from app.models import UserDB, UserPhrase, User
+DATABASE_URL = config("DATABASE_URL")
 
-#DATABASE_URL = os.environ["mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster"]
 client = motor.motor_asyncio.AsyncIOMotorClient(
-    "mongodb+srv://dbUser:UtCgMNghTUiNyKgM@myfirstcluster.py8c0.mongodb.net/MyFirstCluster", uuidRepresentation="standard"
+    DATABASE_URL, uuidRepresentation="standard"
 )
 db = client["PassPhraseGenerator"]
 users_collection = db["users"]

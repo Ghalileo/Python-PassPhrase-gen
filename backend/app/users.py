@@ -10,8 +10,10 @@ from fastapi_users.db import MongoDBUserDatabase
 
 from app.db import get_user_db
 from app.models import User, UserCreate, UserDB, UserUpdate
+from decouple import config
+ 
+SECRET = config("secret")
 
-SECRET = "SECRET"
 
 
 class UserManager(BaseUserManager[UserCreate, UserDB]):
