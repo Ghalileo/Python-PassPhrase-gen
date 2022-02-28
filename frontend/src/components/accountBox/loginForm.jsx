@@ -18,7 +18,7 @@ export function LoginForm(props) {
   const [password, setPassword] = useState('');
  //Post user Login
   const logInHandler = () => {
-    axios.post('http://127.0.0.1:8000/api/user_login/', {'email': email, 'password': password})
+    axios.post('http://127.0.0.1:8000/auth/jwt/login', {'username': email, 'password': password})
     .then(res => console.log(res))
   }
   return (
