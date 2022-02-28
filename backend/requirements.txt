@@ -1,5 +1,6 @@
 fastapi >= 0.65.1
-
+fastapi_users
+fastapi_users[mongodb]
 uvicorn >= 0.14.0
 
 motor >= 2.4.0
