@@ -1,40 +1,43 @@
-// import axios from 'axios'
-// import React, {useState} from 'react'
+import axios from 'axios'
+import React, {useState} from 'react'
 
+const Auth = () => {
 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-//  constructor(props) {
-//     super(props);
-//     this.state = {
-//       is_active:true,
-//       email,
-//       password
+    const loginAuthHandler = (event) => {
+        event.preventDefault();
+        let formData = new FormData();
+        formData.append('username',username);
+        formData.append('password',password);
 
-//     };
-//   }
+        const requestOptions = {
+            method: 'POST',
+            headers:{'content-type': 'application/x-www-form-urlencoded'},
+            url: 'http://127.0.0.1:8000/auth/jwt/login',
+            body: formData,
 
-// const Auth = () => {
+            
+        }
 
-// // state = {
-// //     email:"",
-// //     password:"",
-// //     is_active:true
-// // }
+        axios(requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
 
-// const [email, setEmail] = useState('');
-// const [password, setpassword] = useState('');
+            }
+            throw response
+        })
+        .then(data => {
+            console.log(data);
 
-//     const constructor = () => {
-//         this.isauthenticated = false;
-//     }
-
-//     const loginAuthHandler = (event) => {
-//         event.preventDefault();
-//         axios.get('http:127.0.0.1:8000/auth/jwt/login', {'email': email,'password': password})
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error)
+        })
         
+    }}
 
-// }
-
-// }
-
-// export default Auth;
+export default Auth;
