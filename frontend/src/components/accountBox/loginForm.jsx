@@ -1,4 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect, useCallback} from 'react';
+import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs'
 import {
@@ -19,8 +20,35 @@ export function LoginForm(props) {
   const [authToken, setAuthToken] = useState(null);
   const [authTokenType, setAuthTokenType] = useState(null);
   const [userId , setUserId ] = useState('')
+  const [openSignIn, setOpenSignIn] = useState(false)
+  const navigate = useNavigate();
+  const handleClick = useCallback(() => navigate('/app',{replace:true}),[navigate])
+  useEffect(() => {
+    setAuthToken(window.localStorage.getItem('authToken'));
+    setAuthTokenType(window.localStorage.getItem('authTokenType'))
+    setUsername(window.localStorage.getItem('username'))
+    setUserId(window.localStorage.getItem('userId'))
+  }, [])
+ 
+ 
+  useEffect(() => {
+    authToken
+      ? window.localStorage.setItem('authToken', authToken)
+      : window.localStorage.removeItem('authToken')
+    authTokenType
+      ? window.localStorage.setItem('authTokenType', authTokenType)
+      : window.localStorage.removeItem('authTokenType')
+    username
+      ? window.localStorage.setItem('username', username)
+      : window.localStorage.removeItem('username')
+    userId
+      ? window.localStorage.setItem('userId', userId)
+      : window.localStorage.removeItem('userId')
+
+  }, [authToken, authTokenType, userId])
+
   const loginAuthHandler = (event) => {
-      event.preventDefault();
+      event?.preventDefault();
       //const data = {'grant_type,':'','username':username,'password':password,'scope':'','client_id':'','client_secret':''}
       const data = {'username':username,'password':password}
       const requestOptions = {
@@ -34,13 +62,16 @@ export function LoginForm(props) {
       axios(requestOptions)
       .then(response => {
           if (response.ok) {
-              return response.json()
-
+            
+            return response.json()
+              
           }
+          handleClick()
           throw response
       })
       .then(data => {
           console.log(data);
+
           setAuthToken(data.access_token)
           setAuthTokenType(data.token_type)
           setUserId(data.user_id)
@@ -51,8 +82,9 @@ export function LoginForm(props) {
           console.log(error);
           alert(error)
       })
-      
+      setOpenSignIn(false);
   }
+
   return (
     <BoxContainer>
       <FormContainer>
