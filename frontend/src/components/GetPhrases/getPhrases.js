@@ -5,9 +5,14 @@ import PhraseView from '../PhraseList/phraseView';
 export default function GETPhrases() {
 
   const [phraseList, setPhraseList] = useState([{}]);
+  const requestOptions = {
+    method: 'GET',
+    url: 'http://127.0.0.1:8000/passphrases/',
+}
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/phrase/')
+    axios(requestOptions)
+
     .then(res => {
       setPhraseList(res.data)
     })
