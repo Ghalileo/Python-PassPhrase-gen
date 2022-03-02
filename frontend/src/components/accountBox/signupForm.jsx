@@ -1,5 +1,6 @@
-import React, {useContext, useState} from 'react';
-
+import React, {useContext, useState, useEffect, useCallback} from 'react';
+import {useNavigate, Link} from 'react-router-dom';
+import qs from 'qs'
 import {
   BoldLink,
   BoxContainer,
@@ -16,13 +17,46 @@ export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
+  const [openSignIn, setOpenSignIn] = useState(false)
+  const navigate = useNavigate();
+  const handleClick = useCallback(() => navigate('/app',{replace:true}),[navigate])
+
+
 
 // Post User Sign up information
 const signUpHandler = () => {
-  axios.post('http://127.0.0.1:8000/api/user_signup/', {'fullname': fullname, 'email': email, 'password': password})
-  .then(res => console.log(res))
+  const data =  {'email': email, 'password': password}
+  const requestOptions = {
+
+    method: 'POST',
+    headers:{'content-type': 'application/json'},
+    url: 'http://127.0.0.1:8000/auth/register',
+    data: data
 }
+
+  axios(requestOptions) 
+      .then(response => {
+        if (response.ok) {
+          
+          return response.json()
+            
+        }
+        handleClick()
+        throw response
+    })
+    .then(data => {
+        console.log(data);
+
+    })
+    .catch(error => {
+        console.log(error);
+        alert(error)
+    })
+    setOpenSignIn(false);
+    }
+
 
   return (
     <BoxContainer>
@@ -41,4 +75,6 @@ const signUpHandler = () => {
       </MutedLink>
     </BoxContainer>
   );
+
 }
+  
