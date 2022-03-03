@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import {BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css';
 import Navigation from './components/Nav'
@@ -13,13 +14,13 @@ const App = () => {
       <BrowserRouter>
         <Routes >
           <Route path="/" element={<Home/>}/>
-        </Routes>
-        <Routes>
+          
+        <Route element={<ProtectedRoute/>}>
           <Route path="/app" element={<AppLayout/>}/>
-          </Routes>
-          <Routes> 
+        </Route>
+        
           <Route path="*" element={<NotFound/>}/>
-          </Routes> 
+        </Routes> 
       </BrowserRouter>
     </div>  
   );
