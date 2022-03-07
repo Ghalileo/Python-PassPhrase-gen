@@ -8,7 +8,7 @@ import auth from './auth'
 const useAuth = () => {
     // this const needs to be some verification of the authToken sent from loginAuthHandler
     // but i can't figure it out
-    const user = {loggedIn: false};
+    const user = {loggedIn: true};
     return user && user.loggedIn;
 }
 

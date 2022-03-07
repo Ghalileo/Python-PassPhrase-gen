@@ -5,7 +5,8 @@ export default function PhraseView(props) {
     return (
         <div>
             <ul className="generatedPhrases">
-                {props.phraseList.map(phrase => <PhraseItem phrase={phrase}/> )}
+                {props.phraseList.map(phrase => 
+                <PhraseItem phrase={phrase}/> )}
             </ul>
         </div>
     )
