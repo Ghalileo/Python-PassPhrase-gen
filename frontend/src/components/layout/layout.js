@@ -1,9 +1,8 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import axios from 'axios'
+import axios from 'axios';
 import GETPhrases from '../GetPhrases/getPhrases';
 import POSTPhrase from '../PostPhrase/postPhrase';
-import GETSignups from '../GetSignups/getSignups';
 
 
 import {
@@ -77,8 +76,6 @@ const MainAppLayout = () => {
               <br/>
               <h5 className="card text-white bg-dark mb-3" style={{textAlign: "center"}}>Your Phrases</h5>
               <GETPhrases/>
-              <h5 className="card text-white bg-dark mb-3" style={{textAlign: 'center'}}>Signed-Up Users</h5>
-              <GETSignups/>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Copyright 2021, All rights reserved &copy;</Footer>
