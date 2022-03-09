@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import PhraseView from '../PhraseList/phraseView';
-import qs from 'qs'
+import qs from 'qs';
 export default function GETPhrases() {
   const [phraseList, setPhraseList] = useState([]);
   const requestOptions = {
@@ -10,7 +10,7 @@ export default function GETPhrases() {
     headers : {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZjIxM2M3M2ItZDJjZC00Mjk0LWJhNGMtYjZhZWMyYzk0Y2JjIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY2OTYyNjF9.lGPWaAY_o3RQiB75bd1uo9f59WLEVLCiZsrW-0e0ER8",
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZjIxM2M3M2ItZDJjZC00Mjk0LWJhNGMtYjZhZWMyYzk0Y2JjIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY3ODQ2Mjd9.GL87KFiwmyhEkJ2llVwOhhBcLF1hYnXe8ShIzE_AuuI",
 }
   }
   useEffect(() => {
