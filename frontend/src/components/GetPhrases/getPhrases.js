@@ -10,7 +10,7 @@ export default function GETPhrases() {
     headers : {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjdkM2VjNTUtYjhiYS00ODA5LTlhNjktZjM4MDhiN2I0ZjIyIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY4NDg2Mzl9.vdWKJjLOWCoiLsnMz3NQW48tzTLzKFiPwRfEdHT3908",
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjdkM2VjNTUtYjhiYS00ODA5LTlhNjktZjM4MDhiN2I0ZjIyIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY4NTU4NjZ9.m9lpSuh5l_G2KooQYAsVoYyX9eIMGivl0qjq8VgNg1g",
 }
   }
   useEffect(() => {

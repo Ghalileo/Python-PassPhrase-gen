@@ -14,7 +14,7 @@ const requestOptions = {
     headers : {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjdkM2VjNTUtYjhiYS00ODA5LTlhNjktZjM4MDhiN2I0ZjIyIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY4NDg2Mzl9.vdWKJjLOWCoiLsnMz3NQW48tzTLzKFiPwRfEdHT3908",
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjdkM2VjNTUtYjhiYS00ODA5LTlhNjktZjM4MDhiN2I0ZjIyIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY4NTU4NjZ9.m9lpSuh5l_G2KooQYAsVoYyX9eIMGivl0qjq8VgNg1g",
       },
     url: 'http://127.0.0.1:8000/passphrases',
     data: data
@@ -22,7 +22,8 @@ const requestOptions = {
 // Post a phrase
 const addToHandler = () => {
     axios(requestOptions)
-    .then(res => console.log(res))
+    .then(res => console.log(res));
+    window.location.reload(false)
   }
   return (
     <span className="card-text">

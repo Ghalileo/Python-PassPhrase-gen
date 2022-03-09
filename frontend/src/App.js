@@ -6,7 +6,7 @@ import Navigation from './components/Nav'
 import Home from './pages/Home'
 import AppLayout from './pages/Layout';
 import NotFound from './pages/NotFound';
-import ProtectedRoute from './pages/ProtectedRoute';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 const App = () => {
   return (
