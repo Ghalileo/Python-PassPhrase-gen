@@ -11,7 +11,7 @@ const PhraseItem = (props) => {
 const deletePhraseHandler = (title) => {
 const requestOptions = {
   method: 'DELETE',
-  url: `http://127.0.0.1:8000/passphrases/${title}`,
+  url: `http://127.0.0.1:8000/passphrases/{id}?title=${title}`,
   headers : {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
