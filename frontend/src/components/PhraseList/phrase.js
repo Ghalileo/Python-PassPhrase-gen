@@ -15,7 +15,7 @@ const requestOptions = {
   headers : {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZjIxM2M3M2ItZDJjZC00Mjk0LWJhNGMtYjZhZWMyYzk0Y2JjIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY3ODQ2Mjd9.GL87KFiwmyhEkJ2llVwOhhBcLF1hYnXe8ShIzE_AuuI",
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjdkM2VjNTUtYjhiYS00ODA5LTlhNjktZjM4MDhiN2I0ZjIyIiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE2NDY4NDg2Mzl9.vdWKJjLOWCoiLsnMz3NQW48tzTLzKFiPwRfEdHT3908",
 }}
 
 axios(requestOptions)
